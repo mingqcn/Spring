@@ -10,8 +10,29 @@
             <!--包名+类型-->
             <servlet-class>xmu.servlet.WelcomeServlet</servlet-class>
         </servlet>
-        <servlet-mapping>
+
+        <servlet>
+            <servlet-name>WelcomeGet</servlet-name>
+            <!--包名+类型-->
+            <servlet-class>xmu.servlet.WelcomeGetServlet</servlet-class>
+        </servlet>
+
+        <servlet>
+            <servlet-name>WelcomePost</servlet-name>
+            <!--包名+类型-->
+            <servlet-class>xmu.servlet.WelcomePostServlet</servlet-class>
+        </servlet>
+
+    <servlet-mapping>
             <servlet-name>Welcome</servlet-name>
             <url-pattern>/Welcome</url-pattern>
+        </servlet-mapping>
+        <servlet-mapping>
+            <servlet-name>WelcomeGet</servlet-name>
+            <url-pattern>/get</url-pattern>
+        </servlet-mapping>
+        <servlet-mapping>
+            <servlet-name>WelcomePost</servlet-name>
+            <url-pattern>/post</url-pattern>
         </servlet-mapping>
 </web-app>
