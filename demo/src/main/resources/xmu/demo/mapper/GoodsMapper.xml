@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xmu.demo.mapper.GoodsMapper">
+    <sql id="key">
+        <trim suffixOverrides=",">
+            <if test="goodsSn!=null and goodsSn!=''">
+                goods_sn,
+            </if>
+            <if test="name!=null and name!=''">
+                name,
+            </if>
+            <if test="categoryId!=null">
+                category_id,
+            </if>
+            <if test="brandId!=null">
+                brand_id,
+            </if>
+            <if test="gallery!=null and gallery!=''">
+                gallery,
+            </if>
+            <if test="keywords!=null and keywords!=''">
+                keywords,
+            </if>
+            <if test="brief!=null and brief!=''">
+                brief,
+            </if>
+            <if test="isOnSale!=null">
+                is_on_sale,
+            </if>
+            <if test="sortOrder!=null">
+                sort_order,
+            </if>
+            <if test="picUrl!=null and picUrl!=''">
+                pic_url,
+            </if>
+            <if test="shareUrl!=null and shareUrl!=''">
+                share_url,
+            </if>
+            <if test="isNew!=null">
+                is_new,
+            </if>
+            <if test="isHot!=null">
+                is_hot,
+            </if>
+            <if test="unit!=null and unit!=''">
+                unit,
+            </if>
+            <if test="counterPrice!=null">
+                counter_price,
+            </if>
+            <if test="retailPrice!=null">
+                retail_price,
+            </if>
+            <if test="detail!=null and detail!=''">
+                detail,
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="values">
+        <trim suffixOverrides=",">
+            <if test="goodsSn!=null and goodsSn!=''">
+                #{goodsSn},
+            </if>
+            <if test="name!=null and name!=''">
+                #{name},
+            </if>
+            <if test="categoryId!=null">
+                #{categoryId},
+            </if>
+            <if test="brandId!=null">
+                #{brandId},
+            </if>
+            <if test="gallery!=null and gallery!=''">
+                #{gallery},
+            </if>
+            <if test="keywords!=null and keywords!=''">
+                #{keywords},
+            </if>
+            <if test="brief!=null and brief!=''">
+                #{brief},
+            </if>
+            <if test="isOnSale!=null">
+                #{isOnSale},
+            </if>
+            <if test="sortOrder!=null">
+                #{sortOrder},
+            </if>
+            <if test="picUrl!=null and picUrl!=''">
+                #{picUrl},
+            </if>
+            <if test="shareUrl!=null and shareUrl!=''">
+                #{shareUrl},
+            </if>
+            <if test="isNew!=null">
+                #{isNew},
+            </if>
+            <if test="isHot!=null">
+                #{isHot},
+            </if>
+            <if test="unit!=null and unit!=''">
+                #{unit},
+            </if>
+            <if test="counterPrice!=null">
+                #{counterPrice},
+            </if>
+            <if test="retailPrice!=null">
+                #{retailPrice},
+            </if>
+            <if test="detail!=null and detail!=''">
+                #{detail},
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="update">
+        <trim suffixOverrides=",">
+            <if test="goodsSn!=null and goodsSn!=''">
+                goods_sn=#{goodsSn},
+            </if>
+            <if test="name!=null and name!=''">
+                name=#{name},
+            </if>
+            <if test="categoryId!=null">
+                category_id=#{categoryId},
+            </if>
+            <if test="brandId!=null">
+                brand_id=#{brandId},
+            </if>
+            <if test="gallery!=null and gallery!=''">
+                gallery=#{gallery},
+            </if>
+            <if test="keywords!=null and keywords!=''">
+                keywords=#{keywords},
+            </if>
+            <if test="brief!=null and brief!=''">
+                brief=#{brief},
+            </if>
+            <if test="isOnSale!=null">
+                is_on_sale=#{isOnSale},
+            </if>
+            <if test="sortOrder!=null">
+                sort_order=#{sortOrder},
+            </if>
+            <if test="picUrl!=null and picUrl!=''">
+                pic_url=#{picUrl},
+            </if>
+            <if test="shareUrl!=null and shareUrl!=''">
+                share_url=#{shareUrl},
+            </if>
+            <if test="isNew!=null">
+                is_new=#{isNew},
+            </if>
+            <if test="isHot!=null">
+                is_hot=#{isHot},
+            </if>
+            <if test="unit!=null and unit!=''">
+                unit=#{unit},
+            </if>
+            <if test="counterPrice!=null">
+                counter_price=#{counterPrice},
+            </if>
+            <if test="retailPrice!=null">
+                retail_price=#{retailPrice},
+            </if>
+            <if test="detail!=null and detail!=''">
+                detail=#{detail},
+            </if>
+        </trim>
+    </sql>
+
+    <select id="findById" parameterType="Integer" resultType="Goods">
+            select goods_sn as goodsSn,
+                   name,
+                   category_id as categoryId,
+                   brand_id as brandId,
+                   gallery,
+                   keywords,
+                   brief,
+                   is_on_sale as isOnSale,
+                   sort_order as sortOrder,
+                   pic_url as picUrl,
+                   share_url as shareUrl,
+                   is_new as isNew,
+                   is_hot as isHot,
+                   unit,
+                   counter_price as counterPrice,
+                   retail_price as retailPrice,
+                   detail
+                   from goods where id = #{id}
+    </select>
+
+    <insert id="create" parameterType="Goods" keyProperty="id" useGeneratedKeys="true">
+        insert into goods(<include refid="key"/>) values(<include refid="values"/>)
+    </insert>
+
+    <update id="updateById" parameterType="Goods">
+        update goods set <include refid="update"/> where id =#{id}
+    </update>
+</mapper>
+
